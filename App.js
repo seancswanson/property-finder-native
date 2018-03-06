@@ -3,6 +3,7 @@
  * https://github.com/facebook/react-native
  * @flow
  */
+'use strict'
 
 import React, { Component } from 'react';
 import {
@@ -11,6 +12,9 @@ import {
   Text,
   View
 } from 'react-native';
+import {
+  StackNavigator,
+} from 'react-navigation';
 
 const instructions = Platform.select({
   ios: 'Press Cmd+R to reload,\n' +
@@ -20,12 +24,15 @@ const instructions = Platform.select({
 });
 
 type Props = {};
-export default class App extends Component<Props> {
+class SearchPage extends Component <{}> {
+  static navigationOptions = {
+  title: 'Property Finder',
+};
   render() {
     return (
-      <View style={styles.container}>
-        <Text style={styles.welcome}>
-          Hello, world!
+      <View>
+        <Text style={styles.description}>
+          Search for houses to buy!
         </Text>
       </View>
     );
@@ -33,20 +40,15 @@ export default class App extends Component<Props> {
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-  welcome: {
-    fontSize: 20,
+    description: {
+    fontSize: 18,
     textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
+    color: '#656565',
+    marginTop: 65,
   },
 });
+
+const App = StackNavigator({
+  Home: { screen: SearchPage },
+});
+export default App;
