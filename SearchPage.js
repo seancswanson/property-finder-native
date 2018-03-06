@@ -35,6 +35,7 @@ class SearchPage extends Component <{}> {
             color='#48BBEC'
             title='Go' />
         </View>
+        <Image source={require('./Resources/house.png')} style={styles.image}/>
       </View>
       )
   }
@@ -55,7 +56,22 @@ const styles = StyleSheet.create({
   flowRight: {
     flexDirection: 'row',
     alignItems: 'center',
-    alignSelf: 'stretch'
+    alignSelf: 'stretch',
+    marginTop: 30
+  },
+  searchInput: {
+    height: 36,
+    padding: 4,
+    marginRight: 5,
+    flexGrow: 1,
+    fontSize: 18,
+    borderWidth: 1,
+    borderColor: '#48BBEC',
+    borderRadius: 8,
+    color: '#48BBEC'
+  },
+  image: {
+    marginTop: 20
   }
 });
 
