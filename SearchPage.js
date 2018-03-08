@@ -44,7 +44,7 @@ class SearchPage extends Component <{}> {
     console.log(query);
     this.setState({ isLoading: true });
     fetch(query)
-    .then(repsonse => response.json())
+    .then(response => response.json())
     .then(json => this._handleResponse(json.response))
     .catch(error => this.setState({
       isLoading: false,
@@ -58,6 +58,15 @@ class SearchPage extends Component <{}> {
     this._executeQuery(query);
   }
 
+  _handleResponse = (response) => {
+    this.setState({ isLoading: false, message: ''});
+    if(response.application_response_code.substr(0,1) === '1') {
+        this.props.navigation.navigate(
+          'Results', {listings: response.listings, searchArea: this.state.searchString});
+    } else {
+      this.setState({ message: 'Location not recognized; please try again.'})
+    }
+  }
 
   static navigationOptions= {
     title: 'Property Finder'
@@ -69,10 +78,10 @@ class SearchPage extends Component <{}> {
       <ActivityIndicator size='large' /> : null
     return(
       <View style={styles.container}>
-        <Text style={styles.descripton}>
+        <Text style={styles.description}>
           Search for houses to buy!
         </Text>
-        <Text style={styles.descripton}>
+        <Text style={styles.description} >
           Search by location or zip code.
         </Text>
         <View style={styles.flowRight}>
@@ -99,21 +108,21 @@ class SearchPage extends Component <{}> {
 
 const styles = StyleSheet.create({
   description: {
-    marginBottom: 20,
-    fontSize: 18,
+    marginBottom: 5,
+    fontSize: 20,
     textAlign: 'center',
-    color: '#656565', 
+    color: '#333', 
   },
   container: {
     padding: 30,
-    marginTop: 65,
+    marginTop: 40,
     alignItems: 'center'
   },
   flowRight: {
     flexDirection: 'row',
     alignItems: 'center',
     alignSelf: 'stretch',
-    marginTop: 30
+    marginTop: 20
   },
   searchInput: {
     height: 36,
@@ -127,7 +136,8 @@ const styles = StyleSheet.create({
     color: '#48BBEC'
   },
   image: {
-    marginTop: 20
+    marginTop: 20,
+    marginBottom: 30
   }
 });
 

@@ -10,6 +10,7 @@ import {
   StackNavigator,
 } from 'react-navigation';
 import SearchPage from './SearchPage';
+import SearchResults from './SearchResults';
 
 const instructions = Platform.select({
   ios: 'Press Cmd+R to reload,\n' +
@@ -23,5 +24,7 @@ type Props = {};
 
 const App = StackNavigator({
   Home: SearchPage,
+  Results: SearchResults
 });
+
 export default App;
