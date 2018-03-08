@@ -127,6 +127,7 @@ const styles = StyleSheet.create({
   searchInput: {
     height: 36,
     padding: 4,
+    paddingLeft: 20,
     marginRight: 5,
     flexGrow: 1,
     fontSize: 18,
